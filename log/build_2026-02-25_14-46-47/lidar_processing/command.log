@@ -1,0 +1,2 @@
+Invoking command in '/sim_ws/src/lidar_processing/build/lidar_processing': /usr/bin/cmake /sim_ws/src/lidar_processing -DCMAKE_INSTALL_PREFIX=/sim_ws/src/lidar_processing/install/lidar_processing
+Invoked command in '/sim_ws/src/lidar_processing/build/lidar_processing' returned '1': /usr/bin/cmake /sim_ws/src/lidar_processing -DCMAKE_INSTALL_PREFIX=/sim_ws/src/lidar_processing/install/lidar_processing

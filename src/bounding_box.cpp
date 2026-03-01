@@ -41,7 +41,7 @@ class bounding_box : public rclcpp::Node {
         float vy_cur = 0.0;
 
         // in ms
-        int dt = 150; 
+        int dt = 50; 
         int steps = 3;
         int num_of_clusters = 0;
 

@@ -90,6 +90,7 @@ install(PROGRAMS
   scripts/interceptor.py
   scripts/clustering.py
   scripts/global_raceline_publisher.py
+  scripts/walls_gen.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

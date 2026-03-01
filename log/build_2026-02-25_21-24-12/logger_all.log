@@ -1,0 +1,114 @@
+[0.763s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'lidar_processing']
+[0.764s] DEBUG:colcon:Parsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f15963f8910>>, merge_install=False, metas=['./colcon.meta'], mixin=None, mixin_files=None, mixin_verb=('build',), packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=['lidar_processing'], packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=12, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f15963f8910>, verb_name='build', verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f15963f8ee0>)
+[0.832s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.834s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/Gazebo.meta'
+[0.836s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/fastdds.meta'
+[0.837s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/fastrtps.meta'
+[0.837s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.838s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.838s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.838s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.838s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.838s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/sim_ws/src/lidar_processing'
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.838s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.839s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.839s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.895s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_cmake' and name 'lidar_processing'
+[0.895s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.895s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.895s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.895s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.895s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.948s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'cmake_args' from command line to 'None'
+[0.948s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'cmake_target' from command line to 'None'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'cmake_clean_cache' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'cmake_clean_first' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'cmake_force_configure' from command line to 'False'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'ament_cmake_args' from command line to 'None'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'catkin_cmake_args' from command line to 'None'
+[0.949s] Level 5:colcon.colcon_core.verb:set package 'lidar_processing' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.949s] DEBUG:colcon.colcon_core.verb:Building package 'lidar_processing' with the following arguments: {'ament_cmake_args': None, 'build_base': '/sim_ws/src/lidar_processing/build/lidar_processing', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/sim_ws/src/lidar_processing/install/lidar_processing', 'merge_install': False, 'path': '/sim_ws/src/lidar_processing', 'symlink_install': False, 'test_result_base': None}
+[0.950s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.956s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.957s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/sim_ws/src/lidar_processing' with build type 'ament_cmake'
+[0.957s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/sim_ws/src/lidar_processing'
+[0.971s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.971s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.972s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.021s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/sim_ws/src/lidar_processing/build/lidar_processing': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/sim_ws/install/py_wallfollow:/sim_ws/install/gt_follow_gap:/sim_ws/install/f1tenth_gym_ros:/sim_ws/install/drift_detector:/opt/ros/foxy /usr/bin/cmake /sim_ws/src/lidar_processing -DCMAKE_INSTALL_PREFIX=/sim_ws/src/lidar_processing/install/lidar_processing
+[10.614s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/sim_ws/src/lidar_processing/build/lidar_processing' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/sim_ws/install/py_wallfollow:/sim_ws/install/gt_follow_gap:/sim_ws/install/f1tenth_gym_ros:/sim_ws/install/drift_detector:/opt/ros/foxy /usr/bin/cmake /sim_ws/src/lidar_processing -DCMAKE_INSTALL_PREFIX=/sim_ws/src/lidar_processing/install/lidar_processing
+[10.616s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/sim_ws/src/lidar_processing/build/lidar_processing': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/sim_ws/install/py_wallfollow:/sim_ws/install/gt_follow_gap:/sim_ws/install/f1tenth_gym_ros:/sim_ws/install/drift_detector:/opt/ros/foxy /usr/bin/cmake --build /sim_ws/src/lidar_processing/build/lidar_processing -- -j12 -l12
+[31.805s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/sim_ws/src/lidar_processing/build/lidar_processing' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/sim_ws/install/py_wallfollow:/sim_ws/install/gt_follow_gap:/sim_ws/install/f1tenth_gym_ros:/sim_ws/install/drift_detector:/opt/ros/foxy /usr/bin/cmake --build /sim_ws/src/lidar_processing/build/lidar_processing -- -j12 -l12
+[31.927s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/sim_ws/src/lidar_processing/build/lidar_processing': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/sim_ws/install/py_wallfollow:/sim_ws/install/gt_follow_gap:/sim_ws/install/f1tenth_gym_ros:/sim_ws/install/drift_detector:/opt/ros/foxy /usr/bin/cmake --install /sim_ws/src/lidar_processing/build/lidar_processing
+[32.089s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lidar_processing)
+[32.105s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/sim_ws/src/lidar_processing/build/lidar_processing' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/sim_ws/install/py_wallfollow:/sim_ws/install/gt_follow_gap:/sim_ws/install/f1tenth_gym_ros:/sim_ws/install/drift_detector:/opt/ros/foxy /usr/bin/cmake --install /sim_ws/src/lidar_processing/build/lidar_processing
+[32.116s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing' for CMake module files
+[32.118s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing' for CMake config files
+[32.118s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_processing', 'cmake_prefix_path')
+[32.121s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/cmake_prefix_path.ps1'
+[32.126s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/cmake_prefix_path.dsv'
+[32.127s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/cmake_prefix_path.sh'
+[32.132s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/lib'
+[32.133s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/bin'
+[32.133s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/lib/pkgconfig/lidar_processing.pc'
+[32.135s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/lib/python3.8/site-packages'
+[32.135s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_processing', 'pythonpath')
+[32.137s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/pythonpath.ps1'
+[32.138s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/pythonpath.dsv'
+[32.139s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/pythonpath.sh'
+[32.140s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/bin'
+[32.142s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.ps1'
+[32.146s] INFO:colcon.colcon_core.shell:Creating package descriptor '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.dsv'
+[32.148s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.sh'
+[32.150s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.bash'
+[32.152s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.zsh'
+[32.153s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/sim_ws/src/lidar_processing/install/lidar_processing/share/colcon-core/packages/lidar_processing)
+[32.245s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lidar_processing)
+[32.248s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing' for CMake module files
+[32.250s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing' for CMake config files
+[32.250s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_processing', 'cmake_prefix_path')
+[32.252s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/cmake_prefix_path.ps1'
+[32.253s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/cmake_prefix_path.dsv'
+[32.255s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/cmake_prefix_path.sh'
+[32.256s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/lib'
+[32.256s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/bin'
+[32.256s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/lib/pkgconfig/lidar_processing.pc'
+[32.257s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/lib/python3.8/site-packages'
+[32.257s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_processing', 'pythonpath')
+[32.259s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/pythonpath.ps1'
+[32.260s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/pythonpath.dsv'
+[32.261s] INFO:colcon.colcon_core.shell:Creating environment hook '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/hook/pythonpath.sh'
+[32.262s] Level 1:colcon.colcon_core.environment:checking '/sim_ws/src/lidar_processing/install/lidar_processing/bin'
+[32.264s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.ps1'
+[32.266s] INFO:colcon.colcon_core.shell:Creating package descriptor '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.dsv'
+[32.266s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.sh'
+[32.267s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.bash'
+[32.268s] INFO:colcon.colcon_core.shell:Creating package script '/sim_ws/src/lidar_processing/install/lidar_processing/share/lidar_processing/package.zsh'
+[32.269s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/sim_ws/src/lidar_processing/install/lidar_processing/share/colcon-core/packages/lidar_processing)
+[32.270s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[32.273s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[32.273s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[32.274s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[32.285s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[32.285s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[32.285s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[32.285s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[32.300s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.ServiceUnknown: The name org.freedesktop.Notifications was not provided by any .service files
+[32.301s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[32.305s] INFO:colcon.colcon_core.shell:Creating prefix script '/sim_ws/src/lidar_processing/install/local_setup.ps1'
+[32.308s] INFO:colcon.colcon_core.shell:Creating prefix util module '/sim_ws/src/lidar_processing/install/_local_setup_util_ps1.py'
+[32.311s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/sim_ws/src/lidar_processing/install/setup.ps1'
+[32.317s] INFO:colcon.colcon_core.shell:Creating prefix script '/sim_ws/src/lidar_processing/install/local_setup.sh'
+[32.319s] INFO:colcon.colcon_core.shell:Creating prefix util module '/sim_ws/src/lidar_processing/install/_local_setup_util_sh.py'
+[32.322s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/sim_ws/src/lidar_processing/install/setup.sh'
+[32.328s] INFO:colcon.colcon_core.shell:Creating prefix script '/sim_ws/src/lidar_processing/install/local_setup.bash'
+[32.330s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/sim_ws/src/lidar_processing/install/setup.bash'
+[32.336s] INFO:colcon.colcon_core.shell:Creating prefix script '/sim_ws/src/lidar_processing/install/local_setup.zsh'
+[32.338s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/sim_ws/src/lidar_processing/install/setup.zsh'
