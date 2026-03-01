@@ -20,6 +20,7 @@ class IMMNode(Node):
         self.prev_x = 0.0
         self.prev_y = 0.0
         self.first_callback = True
+        self.last_odom_pub_time = self.get_clock().now()
 
         # Create the kalman filters
         # State vector: [x, vx, ax, y, vy, ay]
@@ -38,7 +39,7 @@ class IMMNode(Node):
         
     
         self.imm_model = IMMEstimator(filters, mu, trans)
-        self.testing = False
+        self.testing = True
     
         if not self.testing:
             self.state_sub = self.create_subscription(
@@ -312,6 +313,58 @@ class IMMNode(Node):
 
     def odom_callback(self, msg : Odometry):
         x, y = msg.pose.pose.position.x, msg.pose.pose.position.y
+        current_time = self.get_clock().now()
+        dt = 0.150
+        if current_time - self.last_odom_pub_time > dt:
+            publish = True
+        else:
+            publish = False
+        if publish:
+            if self.first_callback:
+                self.first_callback = False
+                for kf in self.imm_model.filters:
+                    kf.x[0] = x
+                    kf.x[3] = y
+                self.imm_model.x = self.imm_model.mu @ [f.x for f in self.imm_model.filters]
+                return
+            cross_product = np.cross(np.array([self.imm_model.x[1], self.imm_model.x[4], 0]), np.array([self.imm_model.x[2], self.imm_model.x[5], 0]))
+            vel_mag = np.sqrt(self.imm_model.x[1]**2 + self.imm_model.x[4]**2)
+            accel_mag = np.sqrt(self.imm_model.x[2]**2 + self.imm_model.x[5]**2)
+
+            if vel_mag < 0.01:
+                w = 0.0
+            else:
+                w = np.clip(accel_mag/vel_mag, -0.3, 0.3)
+            w *= np.sign(cross_product[2])
+
+            self.update_filter_matrices(dt, w)
+            
+            z = np.array([x, y])
+            self.imm_model.predict()
+            self.imm_model.update(z)
+
+            # [x, vx, ax, y, vy, ay]
+            # Clamp acceleration to reasonable bounds just in case the taj gen goes off map
+            self.imm_model.x[2] = np.clip(self.imm_model.x[2], -3.0, 3.0)  # ax
+            self.imm_model.x[5] = np.clip(self.imm_model.x[5], -3.0, 3.0)  # ay
+            
+            # Also clamp velocity if needed
+            self.imm_model.x[1] = np.clip(self.imm_model.x[1], -10.0, 10.0)  # vx
+            self.imm_model.x[4] = np.clip(self.imm_model.x[4], -10.0, 10.0)  # vy
+
+
+            # reducing prediction steps to less lag 
+            pred = self.generate_prediction(steps=15, dt=(dt/10))
+            min_x = np.min(pred[:,0])
+            max_x = np.max(pred[:,0])
+            min_y = np.min(pred[:,1])
+            max_y = np.max(pred[:,1])
+
+            self.publish_path(pred.tolist())
+            self.get_logger().info("Published!")
+            self.prev_x = x
+            self.prev_y = y
+            self.wait_count = 0
     
     def generate_prediction(self, steps, dt):
         """Generate predicted trajectory by forward-propagation of the best model"""
