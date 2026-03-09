@@ -7,6 +7,8 @@ from std_msgs.msg import Float64MultiArray, String
 from nav_msgs.msg import Path, Odometry
 from geometry_msgs.msg import PoseStamped, Pose
 from rclpy.time import Time
+from visualization_msgs.msg import Marker, MarkerArray
+from geometry_msgs.msg import Point
 import csv
 
 
@@ -54,6 +56,7 @@ class IMMNode(Node):
         self.traj_pub = self.create_publisher(Path, '/imm_path', 10)
         self.wait_count = 0
         self.chosen_filter_pub = self.create_publisher(String, '/chosen_filter', 10)
+        self.heatmap_pub = self.create_publisher(MarkerArray, '/imm_heatmap', 10)
 
         self.last_publish_time = self.get_clock().now()
         self.publish_interval = 0.005
@@ -315,6 +318,8 @@ class IMMNode(Node):
         self.prev_y = y
         self.wait_count = 0
 
+        self.publish_heatmap(steps=15, dt_step=(dt/10))
+
     def odom_callback(self, msg : Odometry):
         self.get_logger().info("Publish")
         x, y = msg.pose.pose.position.x, msg.pose.pose.position.y
@@ -370,7 +375,49 @@ class IMMNode(Node):
             self.prev_x = x
             self.prev_y = y
             self.wait_count = 0
-    
+
+            self.publish_heatmap(steps=45, dt_step=(dt/3))    
+
+
+    def publish_heatmap(self, steps, dt_step):
+        marker_array = MarkerArray()
+        best_idx = np.argmax(self.imm_model.mu)
+        filter_names = ['CV', 'CA', 'CT']
+
+        for idx, kf in enumerate(self.imm_model.filters):
+            marker = Marker()
+            marker.header.frame_id = "map"
+            marker.header.stamp = self.get_clock().now().to_msg()
+            marker.ns = "imm_heatmap"
+            marker.id = idx
+            marker.type = Marker.LINE_STRIP
+            marker.action = Marker.ADD
+            
+            # Propagation Logic: Start from current IMM combined state
+            temp_state = self.imm_model.x.copy()
+            F = kf.F # Use the specific model's transition matrix
+            
+            # Color & Alpha Logic
+            if idx == best_idx:
+                # Selected model: Solid Green
+                marker.color.r, marker.color.g, marker.color.b, marker.color.a = 0.0, 1.0, 0.0, 1.0
+                marker.scale.x = 0.08 # Thicker line
+            else:
+                # Other models: Faded Red
+                marker.color.r, marker.color.g, marker.color.b, marker.color.a = 1.0, 0.0, 0.0, 0.3
+                marker.scale.x = 0.03 # Thinner line
+
+            # Generate path points for this specific model
+            for i in range(steps):
+                temp_state = np.dot(F, temp_state)
+                p = Point()
+                p.x, p.y, p.z = float(temp_state[0]), float(temp_state[3]), 0.0
+                marker.points.append(p)
+                
+            marker_array.markers.append(marker)
+            
+        self.heatmap_pub.publish(marker_array)
+
     def generate_prediction(self, steps, dt):
         """Generate predicted trajectory by forward-propagation of the best model"""
         curr_state = self.imm_model.x.copy()
