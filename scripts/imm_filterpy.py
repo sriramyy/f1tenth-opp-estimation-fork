@@ -146,12 +146,12 @@ class IMMNode(Node):
             self.last_odom_pub_time = current_time
 
     def publish_heatmap(self, steps):
-        """Monte Carlo Heatmap: 30 samples with jittered velocity and acceleration to show curvature"""
+        """Monte Carlo Heatmap: 30 samples with significantly boosted visibility"""
         marker_array = MarkerArray()
         best_idx = np.argmax(self.imm_model.mu)
         num_samples_per_model = 10 
-        vel_noise = 0.15   # Velocity jitter (m/s)
-        accel_noise = 0.1  # Acceleration jitter (m/s^2) - creates curves
+        vel_noise = 0.15   
+        accel_noise = 0.1  
         
         for model_idx, kf in enumerate(self.imm_model.filters):
             for sample_idx in range(num_samples_per_model):
@@ -161,25 +161,28 @@ class IMMNode(Node):
                 marker.type, marker.action = Marker.LINE_STRIP, Marker.ADD
                 
                 temp_state = self.imm_model.x.copy()
-                # Apply noise to create a fan of curved projections
-                temp_state[1] += np.random.normal(0, vel_noise)   # vx
-                temp_state[2] += np.random.normal(0, accel_noise) # ax
-                temp_state[4] += np.random.normal(0, vel_noise)   # vy
-                temp_state[5] += np.random.normal(0, accel_noise) # ay
+                temp_state[1] += np.random.normal(0, vel_noise)   
+                temp_state[2] += np.random.normal(0, accel_noise) 
+                temp_state[4] += np.random.normal(0, vel_noise)   
+                temp_state[5] += np.random.normal(0, accel_noise) 
                 
                 if model_idx == best_idx:
-                    marker.color.r, marker.color.g, marker.color.b, marker.color.a = 0.0, 1.0, 0.0, 0.6 / num_samples_per_model
-                    marker.scale.x = 0.08
+                    # Green: Make it more saturated
+                    marker.color.r, marker.color.g, marker.color.b, marker.color.a = 0.0, 1.0, 0.0, 0.15 # ~1.5 total alpha
+                    marker.scale.x = 0.1 # Thicker main cone
                 else:
-                    marker.color.r, marker.color.g, marker.color.b, marker.color.a = 1.0, 0.0, 0.0, 0.2 / num_samples_per_model
-                    marker.scale.x = 0.03
+                    # Red: INCREASED FROM 0.2 to 0.5 total potential alpha
+                    marker.color.r, marker.color.g, marker.color.b, marker.color.a = 1.0, 0.0, 0.0, 0.06 # ~0.6 total alpha
+                    marker.scale.x = 0.06 # Thicker ghost lines
 
                 for _ in range(steps):
                     temp_state = np.dot(kf.F, temp_state)
                     p = Point()
-                    p.x, p.y, p.z = float(temp_state[0]), float(temp_state[3]), 0.15 # Elevated path
+                    # INCREASED Z offset to 0.2 to ensure it floats above the car and track
+                    p.x, p.y, p.z = float(temp_state[0]), float(temp_state[3]), 0.2 
                     marker.points.append(p)
                 marker_array.markers.append(marker)
+                
         self.heatmap_pub.publish(marker_array)
 
     def generate_prediction(self, steps, dt):
