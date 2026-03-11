@@ -37,7 +37,7 @@ class IMMNode(Node):
         
         # Set testing=False to use detections from Ego Car LiDAR (/state_vector)
         # Set testing=True for simulator ground truth debugging
-        self.testing = True 
+        self.testing = False
     
         if not self.testing:
             self.state_sub = self.create_subscription(
